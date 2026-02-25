@@ -94,7 +94,7 @@ apmi.logout()
 * Command execution methods return explicit status codes.
 * Device state queries return domain-level values (e.g., `bool`).
 * Sensor data is exposed through structured objects rather than raw dictionaries.
-* Raw API payloads remain accessible for debugging or inspection purposes.
+* Raw sensor payload data remains accessible for debugging or inspection purposes.
 
 ---
 
