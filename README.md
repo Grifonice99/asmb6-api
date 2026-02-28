@@ -48,17 +48,11 @@ The goal is to expose a clean and predictable Python interface suitable for auto
 
 ## Installation
 
-Clone the repository:
+Python 3.7 or higher is required.
+
 
 ```bash
-git clone https://github.com/Grifonice99/asmb6-api
-cd asmb6-api
-```
-
-Install required dependency:
-
-```bash
-pip install requests
+pip install asmb6-api
 ```
 
 ---
@@ -92,7 +86,7 @@ apmi.logout()
 ## Design Notes
 
 * Command execution methods return explicit status codes.
-* Device state queries return domain-level values (e.g., `bool`).
+* Device state queries return domain-level values (for example, `bool`).
 * Sensor data is exposed through structured objects rather than raw dictionaries.
 * Raw sensor payload data remains accessible for debugging or inspection purposes.
 

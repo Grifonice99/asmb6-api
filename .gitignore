@@ -1,2 +1,4 @@
 __pycache__
 *.jnlp
+*.egg-info
+dist
