@@ -38,11 +38,11 @@ The `APMI` class provides an interface to interact with the ASMB6-iKVM module. I
   - **Returns**:
     - `int`: Return code of the API call (0 if the session is valid, otherwise an error code).
 
+
 - #### `sensors() -> Sensors`
   - **Description**: Retrieves and parses sensor data from the ASMB6 module.
   - **Returns**:
     - `Sensors`: A parsed object containing sensor data.
-
 
 
 - #### `status() -> bool`

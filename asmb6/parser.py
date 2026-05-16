@@ -13,9 +13,8 @@ import re
 # 220 : Node Manager capabilities
 
 
-class base:
+class Base:
     def __init__(self):
-        super().__init__()
         self.reading = None
         self.unr = None
         self.uc = None
@@ -26,33 +25,28 @@ class base:
         self.state = None
 
 
-class Temperature(base):
-    def __init__(self):
-        super().__init__()
-
-
-class Voltage(base):
-
-    def __init__(self):
-        super().__init__()
-
-
-class Fan(base):
-    def __init__(self):
-        super().__init__()
-
-
 class StateOnly:
     def __init__(self):
         self.state = None
 
 
-class PowerSupply(base):
+class Temperature(Base):
     def __init__(self):
         super().__init__()
 
 
-class Fan(base):
+class Voltage(Base):
+
+    def __init__(self):
+        super().__init__()
+
+
+class Fan(Base):
+    def __init__(self):
+        super().__init__()
+
+
+class PowerSupply(Base):
     def __init__(self):
         super().__init__()
 
@@ -93,6 +87,11 @@ class Sensors:
         self.watchdog2: StateOnly = StateOnly()
         self.nm_capabilities: StateOnly = StateOnly()
         self.raw = {}
+    
+    def __getitem__(self, key):
+        if hasattr(self, key):
+            return getattr(self, key)
+        raise KeyError(key)
 
 
 def serialize(raw):
@@ -111,8 +110,8 @@ def sanitize(text: str):
     )
 
 
-def Parse_data(raw) -> base:
-    sensor: base = base()
+def Parse_data(raw) -> Base:
+    sensor: Base = Base()
     sensor.lnc = raw["LowNCThresh"]
     sensor.lc = raw["LowCTThresh"]
     sensor.lnr = raw["LowNRThresh"]

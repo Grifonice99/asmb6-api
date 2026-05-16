@@ -37,9 +37,7 @@ class APMI:
     
         json_res = json.loads(serialize(sanitize(res.text)))["WEBVAR_JSONVAR_WEB_SESSION"]
         status = json_res["HAPI_STATUS"]
-        if status != 0:
-            print(f"Invalid credential")
-        else:
+        if status == 0:
             session_cookie = json_res["WEBVAR_STRUCTNAME_WEB_SESSION"][0]["SESSION_COOKIE"]
             
             self.session.cookies.set("Username", username, domain=self.ip, path="/")
@@ -58,7 +56,7 @@ class APMI:
     def validate_session(self)->int:
         if not self.username:
             raise Exception("You need to be authenticated")
-        res = self.session.get(self.base + "/rpc/WEBSES/validate.asp").text
+        res = self.session.get(self.base + "/rpc/WEBSES/validate.asp")
         return json.loads(serialize(sanitize(res.text)))["WEBVAR_JSONVAR_WEB_SESSION_VALIDATE"]["HAPI_STATUS"]
     
     def sensors(self) -> Sensors:
@@ -142,7 +140,7 @@ class APMI:
             raise Exception("You need to be authenticated")
         
         res = self.session.get(
-            self.base + f"/Java/jviewer.jnlp?EXTRNIP={self.base}&JNLPSTR=JViewer",
+            self.base + f"/Java/jviewer.jnlp?EXTRNIP={self.ip}&JNLPSTR=JViewer",
             stream=True,
         )
 
